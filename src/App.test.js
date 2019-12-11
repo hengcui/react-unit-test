@@ -35,7 +35,9 @@ test('renders counter display', () => {
 });
 
 test('renders counter start at 0', () => {
-
+  const wrapper = setup();
+  const initialCount = wrapper.state('count');
+  expect(initialCount).toBe(0);
 });
 
 test('renders clicking button increments counter display', () => {
