@@ -22,13 +22,19 @@ test('renders without error', () => {
   expect(appComponent.length).toBe(1);
 });
 
-test('renders increment button', () => {
+test('renders increment button without error', () => {
   const wrapper = setup();
   const incrementButton = findByTestAttr(wrapper, "button-increment");
   expect(incrementButton.length).toBe(1);
 });
 
-test('renders counter display', () => {
+test('renders decrement button without error', () => {
+  const wrapper = setup();
+  const decrementButton = findByTestAttr(wrapper, "button-decrement");
+  expect(decrementButton.length).toBe(1);
+});
+
+test('renders counter display without error', () => {
   const wrapper = setup();
   const counter = findByTestAttr(wrapper, "counter");
   expect(counter.length).toBe(1);
@@ -41,5 +47,10 @@ test('renders counter start at 0', () => {
 });
 
 test('renders clicking button increments counter display', () => {
-
+  const count = 5;
+  const wrapper = setup({}, { count });
+  const incrementButton = findByTestAttr(wrapper, "button-increment");
+  incrementButton.simulate("click");
+  const counter = findByTestAttr(wrapper, "counter");
+  expect(counter.text()).toContain(count + 1);
 });
