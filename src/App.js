@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -15,14 +14,27 @@ class App extends Component {
     return (
       <div data-test="component-app">
         <div data-test="counter">
-          Currently couter display {this.state.count}
+          Currently couter display {this.state.count < 0 ? 0 : this.state.count}
         </div>
+        
+        {this.state.count < 0 &&
+          <div data-test="error">
+            The counter can't go below zero
+          </div>
+        }
 
         <button 
           data-test="button-increment"
           onClick={() => this.setState({ count: this.state.count + 1 })}
         >
           Increment
+        </button>
+
+        <button
+          data-test="button-decrement"
+          onClick={() => this.setState({ count: this.state.count - 1 })}
+        >
+          Decrement
         </button>
       </div>
     )
